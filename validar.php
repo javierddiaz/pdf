@@ -19,6 +19,7 @@
         $_SESSION["instructor"]=$row["nombre"];
         $_SESSION["correo"]=$row["correo"];
         $_SESSION["telefono"]=$row["telefono"];
+        $_SESSION['borrar']="no";
         header('Location: cotizacion.php');
         exit;
     }

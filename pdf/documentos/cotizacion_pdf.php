@@ -52,5 +52,5 @@
 		$html2pdf = new Html2Pdf();
 		$html2pdf->writeHTML($content);
 		$html2pdf->output();
-		exit;
+
 		
