@@ -13,6 +13,7 @@
 	$session_id= $_SESSION["codigoU"];
 	$sql_count=mysqli_query($con,"select * from tmp_cotizacion where session_id='".$session_id."'");
 	$count=mysqli_num_rows($sql_count);
+
 	if ($count==0)
 	{
 	echo "<script>alert('No hay productos agregados a la cotizacion')</script>";
@@ -41,8 +42,9 @@
     // get the HTML
      ob_start();
      include(dirname('__FILE__').'/res/cotizacion_html.php');
+
     $content = ob_get_clean();
-	
+
 	require __DIR__.'/vendor/autoload.php';
 
 		use Spipu\Html2Pdf\Html2Pdf;
@@ -50,26 +52,5 @@
 		$html2pdf = new Html2Pdf();
 		$html2pdf->writeHTML($content);
 		$html2pdf->output();
-	/*
-	header("Content-type: application/pdf");
-	header("Content-Disposition: inline; filename=documento.pdf");
-	echo $dompdf->output();*/
-
-/*!
-
-    try
-    {
-        // init HTML2PDF
-        $html2pdf = new HTML2PDF('P', 'LETTER', 'es', true, 'UTF-8', array(0, 0, 0, 0));
-        // display the full page
-        $html2pdf->pdf->SetDisplayMode('fullpage');
-        // convert
-        $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
-        // send the PDF
-        $html2pdf->Output('Cotizacion.pdf');
-    }
-    catch(HTML2PDF_exception $e) {
-        echo $e;
-        exit;
-    }
-*/
+		exit;
+		
