@@ -13,12 +13,10 @@
 	$session_id= $_SESSION["codigoU"];
 	$sql_count=mysqli_query($con,"select * from tmp_cotizacion where session_id='".$session_id."'");
 	$count=mysqli_num_rows($sql_count);
-
+	$bandera=0;
 	if ($count==0)
 	{
-	echo "<script>alert('No hay productos agregados a la cotizacion')</script>";
-	echo "<script>window.close();</script>";
-	exit;
+		$bandera=1;
 	}
 
 	//require_once(dirname(__FILE__).'/../html2pdf.class.php');
@@ -41,8 +39,10 @@
 
     // get the HTML
      ob_start();
-     include(dirname('__FILE__').'/res/cotizacion_html.php');
-
+	 if ($bandera==0)
+     	include(dirname('__FILE__').'/res/cotizacion_html.php');
+	else
+		include(dirname('__FILE__').'/res/cotizacion1_html.php');
     $content = ob_get_clean();
 
 	require __DIR__.'/vendor/autoload.php';

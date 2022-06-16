@@ -14,10 +14,7 @@ $codigo=$_SESSION["codigoU"];
 $sql=mysqli_query($con, "select * from tb_user where id=".$_SESSION['codigoU']);
 $row=mysqli_fetch_array($sql);
 $_SESSION["techo"]=$row["useremail"];
-if ($_SESSION['borrar']=="si"){
-	$delete=mysqli_query($con,"DELETE FROM tmp_cotizacion WHERE session_id='".$_SESSION['codigoU']."'");
-}
-$_SESSION['borrar']="no";
+
 ?>
 <table class="table">
 	<tr>

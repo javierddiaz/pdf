@@ -23,10 +23,7 @@ $codigo=$_SESSION["codigoU"];
 $sql=mysqli_query($con, "select * from tb_user where id=".$_SESSION['codigoU']);
 $row=mysqli_fetch_array($sql);
 $_SESSION["techo"]=$row["useremail"];
-if ($_SESSION['borrar']=="si"){
-	$delete=mysqli_query($con,"DELETE FROM tmp_cotizacion WHERE session_id='".$_SESSION['codigoU']."'");
-}
-$_SESSION['borrar']="no";
+
 if (!empty($id) and !empty($cantidad) and !empty($precio_venta)) {
 	$insert_tmp = mysqli_query($con, "INSERT INTO tmp_cotizacion (id_producto,cantidad_tmp,precio_tmp,session_id) VALUES ('$id','$cantidad','$precio_venta','$codigo')");
 	$sql = mysqli_query($con, "SELECT sum(`cantidad_tmp`*`precio_tmp`) FROM `tmp_cotizacion` WHERE `session_id`='" . $codigo . "'");
