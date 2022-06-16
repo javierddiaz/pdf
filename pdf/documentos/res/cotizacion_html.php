@@ -116,5 +116,5 @@ $row = mysqli_fetch_array($sql);
 $saldo=$_SESSION['techo'] -$row[0];
 $insert = mysqli_query($con, "INSERT INTO cotizaciones_demo VALUES (null,'$numero_cotizacion','$date','$area','$tel1','$session_id','','$email','$saldo','$validez','$entrega')");
 mysqli_query($con, "UPDATE tb_user set useremail=".$saldo." WHERE id=" . $_SESSION['codigoU'] );
-$delete=mysqli_query($con,"DELETE FROM tmp_cotizacion WHERE session_id='".$session_id."'");
+$_SESSION['borrar']="si";
 ?>
