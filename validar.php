@@ -11,9 +11,11 @@
 	while ($row=mysqli_fetch_array($sql))
 	{
         session_start();
+        $_SESSION["codigoU"]=$row["id"];
         $_SESSION["seguir"]="ok";
         $_SESSION["codigo"]=$row["termcondition"];
         $_SESSION["nombre"]=$row["token"];
+        $_SESSION["techo"]=$row["useremail"];
         $_SESSION["instructor"]=$row["nombre"];
         $_SESSION["correo"]=$row["correo"];
         $_SESSION["telefono"]=$row["telefono"];

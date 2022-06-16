@@ -6,15 +6,6 @@
 	---------------------------*/
 session_start();
 $session_id = session_id();
-if (isset($_POST['id'])) {
-	$id = $_POST['id'];
-}
-if (isset($_POST['cantidad'])) {
-	$cantidad = $_POST['cantidad'];
-}
-if (isset($_POST['precio_venta'])) {
-	$precio_venta = $_POST['precio_venta'];
-}
 
 /* Connect To Database*/
 require_once("../config/db.php"); //Contiene las variables de configuracion para conectar a la base de datos
@@ -23,24 +14,6 @@ $codigo=$_SESSION["codigoU"];
 $sql=mysqli_query($con, "select * from tb_user where id=".$_SESSION['codigoU']);
 $row=mysqli_fetch_array($sql);
 $_SESSION["techo"]=$row["useremail"];
-if (!empty($id) and !empty($cantidad) and !empty($precio_venta)) {
-	$insert_tmp = mysqli_query($con, "INSERT INTO tmp_cotizacion (id_producto,cantidad_tmp,precio_tmp,session_id) VALUES ('$id','$cantidad','$precio_venta','$codigo')");
-	$sql = mysqli_query($con, "SELECT sum(`cantidad_tmp`*`precio_tmp`) FROM `tmp_cotizacion` WHERE `session_id`='" . $codigo . "'");
-	$row = mysqli_fetch_array($sql);
-	if ( $row[0]>$_SESSION["techo"] )
-	{
-		echo "<script>alert('Sobrepasa el valor asingado, debe disminuir cantidades o valores')</script>";
-		$sql = mysqli_query($con, "SELECT max(id_tmp) FROM `tmp_cotizacion` WHERE `session_id`='" . $codigo . "'");
-		$row = mysqli_fetch_array($sql);
-		$delete = mysqli_query($con, "DELETE FROM tmp_cotizacion WHERE id_tmp='" . ($row[0]) . "'");
-	}
-
-}
-if (isset($_GET['id'])) //codigo elimina un elemento del array
-{
-	$delete = mysqli_query($con, "DELETE FROM tmp_cotizacion WHERE id_tmp='" . ($_GET['id']) . "'");
-}
-
 ?>
 <table class="table">
 	<tr>

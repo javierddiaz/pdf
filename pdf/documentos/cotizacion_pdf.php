@@ -10,7 +10,7 @@
 	/* Connect To Database*/
 	include("../../config/db.php");
 	include("../../config/conexion.php");
-	$session_id= session_id();
+	$session_id= $_SESSION["codigoU"];
 	$sql_count=mysqli_query($con,"select * from tmp_cotizacion where session_id='".$session_id."'");
 	$count=mysqli_num_rows($sql_count);
 	if ($count==0)
@@ -37,6 +37,7 @@
 	$sql_cotizacion=mysqli_query($con, "select LAST_INSERT_ID(numero_cotizacion) as last from cotizaciones_demo order by id_cotizacion desc limit 0,1 ");
 	$rwC=mysqli_fetch_array($sql_cotizacion);
 	$numero_cotizacion=$rwC['last']+1;	
+
     // get the HTML
      ob_start();
      include(dirname('__FILE__').'/res/cotizacion_html.php');
