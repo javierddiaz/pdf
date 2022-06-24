@@ -26,8 +26,17 @@
         <tr>
             <?php
             switch ($area) {
-                case 4:
+                case 5:
                     $dato = 'Construcción';
+                    break;
+                case 2:
+                    $dato = 'Bisuteria';
+                    break;
+                case 3:
+                    $dato = 'Artesanias';
+                    break;
+                case 4:
+                    $dato = 'Confecciones';
                     break;
             }
             ?>
