@@ -95,7 +95,7 @@
     <table cellspacing="0" style="width: 100%; border: solid 1px black; background: #E7E7E7; text-align: center; font-size: 11pt;padding:1mm;">
         <tr>
             <th style="width: 30%; text-align: right;">SALDO : </th>
-            <th style="width: 20%; text-align: right;"><?php echo number_format( $_SESSION['techo']- $sumador_total,2);?></th>
+            <th style="width: 20%; text-align: right;"><?php echo number_format( $_SESSION['techo'],2);?></th>
             <th style="width: 30%; text-align: right;">TOTAL : </th>
             <th style="width: 20%; text-align: right;">&#36; <? echo number_format($sumador_total, 2); ?></th>
         </tr>

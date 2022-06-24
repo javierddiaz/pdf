@@ -62,7 +62,8 @@
     </table>
     <?php
     $sumador_total = 0;
-    $sql = mysqli_query($con, "select * from productos_demo, tmp_cotizacion where productos_demo.id_producto=tmp_cotizacion.id_producto and tmp_cotizacion.session_id='" . $session_id . "'");
+    $sql = mysqli_query($con, "select  * from productos_demo, tmp_cotizacion where productos_demo.id_producto=tmp_cotizacion.id_producto and tmp_cotizacion.session_id='" . $session_id . "'");
+
     while ($row = mysqli_fetch_array($sql)) {
         $id_tmp = $row["id_tmp"];
         $id_producto = $row["id_producto"];
