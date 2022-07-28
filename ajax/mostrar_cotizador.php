@@ -32,6 +32,7 @@ $_SESSION["techo"]=$row["useremail"];
 
 	$sumador_total = 0;
 	$sql = mysqli_query($con, "select distinct * from productos_demo, tmp_cotizacion where productos_demo.id_producto=tmp_cotizacion.id_producto and tmp_cotizacion.session_id='" . $_SESSION["codigoU"] . "'");
+	
 	while ($row = mysqli_fetch_array($sql)) {
 		$id_tmp = $row["id_tmp"];
 		$codigo_producto = $row['codigo_producto'];

@@ -9,7 +9,7 @@
 
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -31,6 +31,7 @@
 		}
 		else{
 			$area=$_REQUEST['area'];
+			echo $area."--";
 			$sWhere = "WHERE id_departamento_producto='$area'";
 		}
 		include 'pagination.php'; //include pagination file

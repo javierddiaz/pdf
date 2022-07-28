@@ -38,6 +38,12 @@
                 case 4:
                     $dato = 'Confecciones';
                     break;
+                case 12:
+                    $dato = '3D';
+                    break;
+                case 13:
+                    $dato = 'Sistemas';
+                    break;
             }
             ?>
             <td style="width:15%; ">Area:</td>
@@ -98,15 +104,14 @@
         </table>
     <?php
         //Insert en la tabla detalle_cotizacion
-       $insert_detail = mysqli_query($con, "INSERT INTO detalle_cotizacion_demo (numero_cotizacion,id_producto,cantidad,precio_venta) VALUES ('$numero_cotizacion','$id_producto','$cantidad','$precio_venta_r')");
-
+        $insert_detail = mysqli_query($con, "INSERT INTO detalle_cotizacion_demo (numero_cotizacion,id_producto,cantidad,precio_venta) VALUES ('$numero_cotizacion','$id_producto','$cantidad','$precio_venta_r')");
     }
 
     ?>
     <table cellspacing="0" style="width: 100%; border: solid 1px black; background: #E7E7E7; text-align: center; font-size: 11pt;padding:1mm;">
         <tr>
             <th style="width: 30%; text-align: right;">SALDO : </th>
-            <th style="width: 20%; text-align: right;"><?php echo number_format( $_SESSION['techo']- $sumador_total,2);?></th>
+            <th style="width: 20%; text-align: right;"><?php echo number_format($_SESSION['techo'] - $sumador_total, 2); ?></th>
             <th style="width: 30%; text-align: right;">TOTAL : </th>
             <th style="width: 20%; text-align: right;">&#36; <? echo number_format($sumador_total, 2); ?></th>
         </tr>
@@ -123,9 +128,9 @@
 $date = date("Y-m-d H:i:s");
 $sql = mysqli_query($con, "SELECT sum(`cantidad_tmp`*`precio_tmp`) FROM `tmp_cotizacion` WHERE `session_id`='" . $_SESSION['codigoU'] . "'");
 $row = mysqli_fetch_array($sql);
-$saldo=$_SESSION['techo'] -$row[0];
+$saldo = $_SESSION['techo'] - $row[0];
 $insert = mysqli_query($con, "INSERT INTO cotizaciones_demo VALUES (null,'$numero_cotizacion','$date','$area','$tel1','$session_id','','$email','$saldo','$validez','$entrega')");
-mysqli_query($con, "UPDATE tb_user set useremail=".$saldo." WHERE id=" . $_SESSION['codigoU'] );
-$delete=mysqli_query($con,"DELETE FROM tmp_cotizacion WHERE session_id='".$_SESSION['codigoU']."'");
+mysqli_query($con, "UPDATE tb_user set useremail=" . $saldo . " WHERE id=" . $_SESSION['codigoU']);
+$delete = mysqli_query($con, "DELETE FROM tmp_cotizacion WHERE session_id='" . $_SESSION['codigoU'] . "'");
 
 ?>
