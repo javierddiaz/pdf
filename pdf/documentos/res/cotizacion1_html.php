@@ -38,6 +38,12 @@
                 case 4:
                     $dato = 'Confecciones';
                     break;
+                case 12:
+                    $dato = '3D';
+                    break;
+                case 13:
+                    $dato = 'Sistemas';
+                    break;
             }
             ?>
             <td style="width:15%; ">Area:</td>
